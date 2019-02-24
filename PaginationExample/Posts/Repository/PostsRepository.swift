@@ -9,36 +9,19 @@
 import Foundation
 
 protocol PostsRepositoryProtocol {
-    func getPosts() -> [Post]
+    func getPosts(callback: @escaping ([PostProtocol]?, Error?) -> ())
 }
 
 struct PostsRepository: PostsRepositoryProtocol {
-    func getPosts() -> [Post] {
-        return [
-            Post(
-                userId: 2,
-                id: 19,
-                title: "1. adipisci placeat illum aut reiciendis qui",
-                body: "illum quis cupiditate provident sit magnam\nea sed aut omnis\nveniam maiores ullam consequatur atque\nadipisci quo iste expedita sit quos voluptas"
-            ),
-            Post(
-                userId: 2,
-                id: 19,
-                title: "2. adipisci placeat illum aut reiciendis qui",
-                body: "illum quis cupiditate provident sit magnam\nea sed aut omnis\nveniam maiores ullam consequatur atque\nadipisci quo iste expedita sit quos voluptas"
-            ),
-            Post(
-                userId: 2,
-                id: 19,
-                title: "3. adipisci placeat illum aut reiciendis qui",
-                body: "illum quis cupiditate provident sit magnam\nea sed aut omnis\nveniam maiores ullam consequatur atque\nadipisci quo iste expedita sit quos voluptas"
-            ),
-            Post(
-                userId: 2,
-                id: 19,
-                title: "4. adipisci placeat illum aut reiciendis qui",
-                body: "illum quis cupiditate provident sit magnam\nea sed aut omnis\nveniam maiores ullam consequatur atque\nadipisci quo iste expedita sit quos voluptas"
-            )
-        ]
+    let api: PostsAPIProtocol
+    
+    init(api: PostsAPIProtocol) {
+        self.api = api
+    }
+    
+    func getPosts(callback: @escaping ([PostProtocol]?, Error?) -> ()) {
+        self.api.getPosts(
+            callback: callback
+        )
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 
 class PostsViewController: UIViewController {
     private let viewModel: PostsViewModelProtocol
+    private var posts: [PostProtocol] = []
     
     private let tableView: UITableView = {
         let view = UITableView(frame: .infinite, style: .plain)
@@ -31,9 +32,24 @@ class PostsViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.viewModel.getPosts { [weak self] (posts) in
+            if let posts = posts {
+                self?.posts = posts
+                DispatchQueue.main.async {
+                    self?.setTitlePosts(number: posts.count)
+                    self?.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func setTitlePosts(number: Int) {
+        self.title = "Posts (\(number))"
     }
     
     override func loadView() {
+        self.title = "Posts"
         self.view = UIView()
         
         self.view.addSubview(self.tableView)
@@ -50,9 +66,9 @@ class PostsViewController: UIViewController {
 extension PostsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        assert(row < self.viewModel.getPosts().count)
+        assert(row < self.posts.count)
         
-        let model = self.viewModel.getPosts()[row]
+        let model = self.posts[row]
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = model.title
         return cell
@@ -63,7 +79,7 @@ extension PostsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.getPosts().count
+        return self.posts.count
     }
 }
 

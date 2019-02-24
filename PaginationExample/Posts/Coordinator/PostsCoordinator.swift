@@ -12,7 +12,7 @@ import UIKit
 struct PostsCoordinator: RootCoordinator {
     func instantiateRoot() -> UIViewController? {
         let viewModel = PostsViewModel(
-            repostiory: PostsRepository()
+            repostiory: PostsRepository(api: PostsAPI())
         )
         
         let viewController = PostsViewController(viewModel: viewModel)

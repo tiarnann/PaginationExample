@@ -18,6 +18,7 @@
 		09A6FE962223479D006C720D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE952223479D006C720D /* Post.swift */; };
 		09A6FE9A222348CF006C720D /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE99222348CF006C720D /* PostsViewController.swift */; };
 		09A6FE9C2223498F006C720D /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE9B2223498F006C720D /* PostsViewModel.swift */; };
+		09A6FE9F22235234006C720D /* PostsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE9E22235234006C720D /* PostsAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		09A6FE952223479D006C720D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		09A6FE99222348CF006C720D /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		09A6FE9B2223498F006C720D /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
+		09A6FE9E22235234006C720D /* PostsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		09A6FE9122234775006C720D /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				09A6FE9D2223521F006C720D /* API */,
 				09A6FE9222234787006C720D /* PostsRepository.swift */,
 			);
 			path = Repository;
@@ -165,6 +168,14 @@
 				09A6FE9B2223498F006C720D /* PostsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		09A6FE9D2223521F006C720D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FE9E22235234006C720D /* PostsAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +283,7 @@
 				09A6FE9322234787006C720D /* PostsRepository.swift in Sources */,
 				09A6FE8C22234674006C720D /* RootCoordinatorProtocol.swift in Sources */,
 				09A6FE9C2223498F006C720D /* PostsViewModel.swift in Sources */,
+				09A6FE9F22235234006C720D /* PostsAPI.swift in Sources */,
 				09A6FE962223479D006C720D /* Post.swift in Sources */,
 				09A6FE90222346BD006C720D /* PostsCoordinator.swift in Sources */,
 				09A6FE6922234505006C720D /* AppDelegate.swift in Sources */,

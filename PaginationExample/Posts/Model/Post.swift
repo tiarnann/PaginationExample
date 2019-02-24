@@ -8,7 +8,14 @@
 
 import Foundation
 
-struct Post: Codable {
+protocol PostProtocol {
+    var userId: Int { get }
+    var id: Int { get }
+    var title: String { get }
+    var body: String { get }
+}
+
+struct Post: Codable, PostProtocol {
     let userId: Int
     let id: Int
     let title: String

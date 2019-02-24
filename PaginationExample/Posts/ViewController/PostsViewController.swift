@@ -16,6 +16,7 @@ class PostsViewController: UIViewController {
     private let tableView: UITableView = {
         let view = UITableView(frame: .infinite, style: .plain)
         view.alwaysBounceVertical = true
+        view.separatorStyle = .none
         return view
     }()
     
@@ -30,6 +31,7 @@ class PostsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(PostsTableViewCell.self)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -66,11 +68,14 @@ class PostsViewController: UIViewController {
 extension PostsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        assert(row < self.posts.count)
         
+        assert(row < self.posts.count)
         let model = self.posts[row]
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = model.title
+        
+        let cell: PostsTableViewCell  = tableView.dequeueResusableCell(for: indexPath)
+        cell.titleLabel.text = model.title
+        cell.bodyLabel.text = model.body
+    
         return cell
     }
     
@@ -85,5 +90,10 @@ extension PostsViewController: UITableViewDataSource {
 
 extension PostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }

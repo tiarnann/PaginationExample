@@ -153,13 +153,12 @@ class PostsTableViewCell: UITableViewCell {
     
     func handlePressDownEnded() {
         self.animatingPressDown = false
-        self.transform = CGAffineTransform.identity
         UIView.animate(
             withDuration: 0.06,
             delay: 0, options: UIViewAnimationOptions.curveEaseIn,
             animations: {
                 self.transform = .identity
-        },
+            },
             completion: nil
         )
     }

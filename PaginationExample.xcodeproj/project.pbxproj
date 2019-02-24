@@ -19,6 +19,8 @@
 		09A6FE9A222348CF006C720D /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE99222348CF006C720D /* PostsViewController.swift */; };
 		09A6FE9C2223498F006C720D /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE9B2223498F006C720D /* PostsViewModel.swift */; };
 		09A6FE9F22235234006C720D /* PostsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE9E22235234006C720D /* PostsAPI.swift */; };
+		09A6FEA222235C10006C720D /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FEA122235C10006C720D /* PostsTableViewCell.swift */; };
+		09A6FEA522235C47006C720D /* UITableView+Registering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FEA422235C47006C720D /* UITableView+Registering.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		09A6FE99222348CF006C720D /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		09A6FE9B2223498F006C720D /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		09A6FE9E22235234006C720D /* PostsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsAPI.swift; sourceTree = "<group>"; };
+		09A6FEA122235C10006C720D /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		09A6FEA422235C47006C720D /* UITableView+Registering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Registering.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 		09A6FE6722234504006C720D /* PaginationExample */ = {
 			isa = PBXGroup;
 			children = (
+				09A6FEA322235C2C006C720D /* Utils */,
 				09A6FE8D2223469F006C720D /* Posts */,
 				09A6FE8A22234661006C720D /* Protocols */,
 				09A6FE6822234505006C720D /* AppDelegate.swift */,
@@ -157,6 +162,7 @@
 		09A6FE9722234889006C720D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				09A6FEA022235BFF006C720D /* Cells */,
 				09A6FE99222348CF006C720D /* PostsViewController.swift */,
 			);
 			path = ViewController;
@@ -176,6 +182,22 @@
 				09A6FE9E22235234006C720D /* PostsAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		09A6FEA022235BFF006C720D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FEA122235C10006C720D /* PostsTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		09A6FEA322235C2C006C720D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FEA422235C47006C720D /* UITableView+Registering.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +307,8 @@
 				09A6FE9C2223498F006C720D /* PostsViewModel.swift in Sources */,
 				09A6FE9F22235234006C720D /* PostsAPI.swift in Sources */,
 				09A6FE962223479D006C720D /* Post.swift in Sources */,
+				09A6FEA222235C10006C720D /* PostsTableViewCell.swift in Sources */,
+				09A6FEA522235C47006C720D /* UITableView+Registering.swift in Sources */,
 				09A6FE90222346BD006C720D /* PostsCoordinator.swift in Sources */,
 				09A6FE6922234505006C720D /* AppDelegate.swift in Sources */,
 			);

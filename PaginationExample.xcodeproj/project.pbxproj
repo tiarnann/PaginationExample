@@ -13,6 +13,13 @@
 		09A6FE7022234506006C720D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09A6FE6F22234506006C720D /* Assets.xcassets */; };
 		09A6FE7322234506006C720D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A6FE7122234506006C720D /* LaunchScreen.storyboard */; };
 		09A6FE7E22234506006C720D /* PaginationExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE7D22234506006C720D /* PaginationExampleTests.swift */; };
+		09A6FE8922234548006C720D /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 09A6FE8822234548006C720D /* Cartfile */; };
+		09A6FE8C22234674006C720D /* RootCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE8B22234674006C720D /* RootCoordinatorProtocol.swift */; };
+		09A6FE90222346BD006C720D /* PostsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE8F222346BD006C720D /* PostsCoordinator.swift */; };
+		09A6FE9322234787006C720D /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE9222234787006C720D /* PostsRepository.swift */; };
+		09A6FE962223479D006C720D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE952223479D006C720D /* Post.swift */; };
+		09A6FE9A222348CF006C720D /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE99222348CF006C720D /* PostsViewController.swift */; };
+		09A6FE9C2223498F006C720D /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FE9B2223498F006C720D /* PostsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,13 @@
 		09A6FE7922234506006C720D /* PaginationExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaginationExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A6FE7D22234506006C720D /* PaginationExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationExampleTests.swift; sourceTree = "<group>"; };
 		09A6FE7F22234506006C720D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09A6FE8822234548006C720D /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		09A6FE8B22234674006C720D /* RootCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		09A6FE8F222346BD006C720D /* PostsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsCoordinator.swift; sourceTree = "<group>"; };
+		09A6FE9222234787006C720D /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
+		09A6FE952223479D006C720D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		09A6FE99222348CF006C720D /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
+		09A6FE9B2223498F006C720D /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +91,15 @@
 		09A6FE6722234504006C720D /* PaginationExample */ = {
 			isa = PBXGroup;
 			children = (
+				09A6FE8D2223469F006C720D /* Posts */,
+				09A6FE8A22234661006C720D /* Protocols */,
 				09A6FE6822234505006C720D /* AppDelegate.swift */,
 				09A6FE6A22234505006C720D /* ViewController.swift */,
 				09A6FE6C22234505006C720D /* Main.storyboard */,
 				09A6FE6F22234506006C720D /* Assets.xcassets */,
 				09A6FE7122234506006C720D /* LaunchScreen.storyboard */,
 				09A6FE7422234506006C720D /* Info.plist */,
+				09A6FE8822234548006C720D /* Cartfile */,
 			);
 			path = PaginationExample;
 			sourceTree = "<group>";
@@ -94,6 +111,66 @@
 				09A6FE7F22234506006C720D /* Info.plist */,
 			);
 			path = PaginationExampleTests;
+			sourceTree = "<group>";
+		};
+		09A6FE8A22234661006C720D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FE8B22234674006C720D /* RootCoordinatorProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		09A6FE8D2223469F006C720D /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FE9422234793006C720D /* Model */,
+				09A6FE9122234775006C720D /* Repository */,
+				09A6FE9822234896006C720D /* ViewModel */,
+				09A6FE9722234889006C720D /* ViewController */,
+				09A6FE8E222346AF006C720D /* Coordinator */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		09A6FE8E222346AF006C720D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FE8F222346BD006C720D /* PostsCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		09A6FE9122234775006C720D /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FE9222234787006C720D /* PostsRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		09A6FE9422234793006C720D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FE952223479D006C720D /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		09A6FE9722234889006C720D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FE99222348CF006C720D /* PostsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		09A6FE9822234896006C720D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FE9B2223498F006C720D /* PostsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +256,7 @@
 			files = (
 				09A6FE7322234506006C720D /* LaunchScreen.storyboard in Resources */,
 				09A6FE7022234506006C720D /* Assets.xcassets in Resources */,
+				09A6FE8922234548006C720D /* Cartfile in Resources */,
 				09A6FE6E22234505006C720D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,7 +275,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09A6FE9A222348CF006C720D /* PostsViewController.swift in Sources */,
+				09A6FE9322234787006C720D /* PostsRepository.swift in Sources */,
+				09A6FE8C22234674006C720D /* RootCoordinatorProtocol.swift in Sources */,
 				09A6FE6B22234505006C720D /* ViewController.swift in Sources */,
+				09A6FE9C2223498F006C720D /* PostsViewModel.swift in Sources */,
+				09A6FE962223479D006C720D /* Post.swift in Sources */,
+				09A6FE90222346BD006C720D /* PostsCoordinator.swift in Sources */,
 				09A6FE6922234505006C720D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2BQLZG8M4F;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PaginationExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -377,7 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2BQLZG8M4F;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PaginationExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

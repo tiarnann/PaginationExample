@@ -1,10 +1,17 @@
 # PaginationExample
-This is an iOS example project demonstrating:
-- [x] MVVM-Coordinator Pattern
-- [ ] Protocol Oriented Design
-- [ ] Repository Pattern
-- [ ] RxSwift
+TODO:
+- [x] MVVM-C Structure
+- [x] Implement list with mock data
+- [x] Connect up api to fetch data
+- [ ] Make object to handle network requests
+- [ ] Detect table view scroll to trigger network
+- [ ] Make detail page for notes
 
+This is an iOS example project to pull data from JSONPlaceholder and maybe paginate it. It will* be demonstrating:
+- MVVM-Coordinator Pattern
+- Protocol Oriented Design
+- Repository Pattern
+- RxSwift
 
 ## MVVM-Coordinator Pattern
 

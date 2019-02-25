@@ -20,4 +20,8 @@ struct Post: Codable, PostProtocol {
     let id: Int
     let title: String
     let body: String
+    
+    func toPostProtocol() -> PostProtocol {
+        return self
+    }
 }

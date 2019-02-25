@@ -16,8 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        if let viewController = PostsCoordinator().instantiateRoot() {
-            self.window?.rootViewController = UINavigationController(rootViewController: viewController)
+        
+        let coordinator = PostsCoordinator(networkManager: NetworkManager())
+        if let viewController = coordinator.instantiateRoot() {
+            let navigation = UINavigationController(rootViewController: viewController)
+            self.window?.rootViewController = navigation
             self.window?.makeKeyAndVisible()
         }
 

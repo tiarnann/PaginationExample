@@ -35,14 +35,16 @@ class PostsViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.viewModel.getPosts { [weak self] (posts) in
-            if let posts = posts {
+        self.viewModel.getPosts { [weak self] (result) in
+            result.map({ (posts) -> Void in
                 self?.posts = posts
                 DispatchQueue.main.async {
                     self?.setTitlePosts(number: posts.count)
                     self?.tableView.reloadData()
                 }
-            }
+            }).catchError({ (error) in
+                // show error in some way
+            })
         }
     }
     

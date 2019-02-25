@@ -14,53 +14,35 @@ enum PostsAPIError: Error {
 }
 
 protocol PostsAPIProtocol {
-    func getPosts(callback: @escaping ([PostProtocol]?, Error?)->())
-    func getPosts(offset: Int, limit: Int, callback: @escaping ([PostProtocol]?, Error?)->())
+    func getPosts(callback: @escaping (Result<[PostProtocol]>)->())
+    func getPosts(offset: Int, limit: Int, callback: @escaping (Result<[PostProtocol]>)->())
 }
 
 struct PostsAPI: PostsAPIProtocol {
     private let urlSession: URLSession
+    private let networkManager: NetworkManagerProtocol
     
-    init() {
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
         self.urlSession = URLSession(configuration: URLSessionConfiguration.default)
     }
     
-    func getPosts(callback: @escaping ([PostProtocol]?, Error?)->()) {
-        let url = URL(string: "http://jsonplaceholder.typicode.com/posts")!
-        self.getPosts(url: url, callback: callback)
+    func getPosts(callback: @escaping (Result<[PostProtocol]>)->()) {
+        let request = self.networkManager.buildRequest(url: "http://jsonplaceholder.typicode.com/posts")
+        self.networkManager.performAndDecodeRequest(request: request) { (posts: Result<[Post]>) in
+            callback(posts.map({ (posts) -> [PostProtocol] in
+                return posts
+            }))
+        }
     }
     
-    func getPosts(offset: Int, limit: Int, callback: @escaping ([PostProtocol]?, Error?)->()) {
-         let url = URL(string: "http://jsonplaceholder.typicode.com/posts?_start=\(offset)&_limit=\(limit)")!
-        self.getPosts(url: url, callback: callback)
+    func getPosts(offset: Int, limit: Int, callback: @escaping (Result<[PostProtocol]>)->()) {
+        let request = self.networkManager.buildRequest(url: "http://jsonplaceholder.typicode.com/posts?_start=\(offset)&_limit=\(limit)")
+        self.networkManager.performAndDecodeRequest(request: request) { (posts: Result<[Post]>) in
+            callback(posts.map({ (posts) -> [PostProtocol] in
+                return posts
+            }))
+        }
     }
-    
-    func getPosts(url: URL, callback: @escaping ([PostProtocol]?, Error?)->()) {
-        let request = URLRequest(
-            url: url,
-            cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData,
-            timeoutInterval: 10.0
-        )
-        self.urlSession.dataTask(
-            with: request,
-            completionHandler: { (data, response, error) in
-                if let error = error {
-                    callback(nil, PostsAPIError.network(error))
-                    return
-                }
-                
-                if let data = data {
-                    do {
-                        let posts = try JSONDecoder().decode([Post].self, from: data)
-                        callback(posts, nil)
-                        return
-                    } catch let err {
-                        callback(nil, PostsAPIError.parsing(err))
-                        return
-                    }
-                }
-                
-                callback([], nil)
-        }).resume()
-    }
+
 }

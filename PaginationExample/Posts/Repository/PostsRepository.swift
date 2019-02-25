@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PostsRepositoryProtocol {
-    func getPosts(callback: @escaping ([PostProtocol]?, Error?) -> ())
+    func getPosts(callback: @escaping (Result<[PostProtocol]>) -> ())
 }
 
 struct PostsRepository: PostsRepositoryProtocol {
@@ -19,7 +19,7 @@ struct PostsRepository: PostsRepositoryProtocol {
         self.api = api
     }
     
-    func getPosts(callback: @escaping ([PostProtocol]?, Error?) -> ()) {
+    func getPosts(callback: @escaping (Result<[PostProtocol]>) -> ()) {
         self.api.getPosts(
             callback: callback
         )

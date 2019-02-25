@@ -9,20 +9,17 @@
 import Foundation
 
 protocol PostsViewModelProtocol {
-    func getPosts(callback: @escaping ([PostProtocol]?) -> ())
+    func getPosts(callback: @escaping (Result<[PostProtocol]>) -> ())
 }
 
 struct PostsViewModel: PostsViewModelProtocol {
     private let repostiory: PostsRepositoryProtocol
-    private var posts: [PostProtocol]?
     
     init(repostiory: PostsRepositoryProtocol) {
         self.repostiory = repostiory
     }
     
-    func getPosts(callback: @escaping ([PostProtocol]?) -> ()) {
-        self.repostiory.getPosts(callback: { posts, _ in
-            callback(posts)
-        })
+    func getPosts(callback: @escaping (Result<[PostProtocol]>) -> ()) {
+        self.repostiory.getPosts(callback: callback)
     }
 }

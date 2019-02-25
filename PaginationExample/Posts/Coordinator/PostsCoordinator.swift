@@ -10,9 +10,17 @@ import Foundation
 import UIKit
 
 struct PostsCoordinator: RootCoordinator {
+    private let networkManager: NetworkManagerProtocol
+    
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
+    }
+    
     func instantiateRoot() -> UIViewController? {
         let viewModel = PostsViewModel(
-            repostiory: PostsRepository(api: PostsAPI())
+            repostiory: PostsRepository(
+                api: PostsAPI(networkManager: networkManager)
+            )
         )
         
         let viewController = PostsViewController(viewModel: viewModel)

@@ -9,7 +9,13 @@
 import Foundation
 
 protocol PostsViewModelProtocol {
-    func getPosts(callback: @escaping (Result<[PostProtocol]>) -> ())
+    func getPosts(page: PostsPageResult?, callback: @escaping (Result<PostsPageResult>) -> ())
+}
+
+struct PostsPageResult {
+    let posts: [PostProtocol]
+    let offest: Int?
+    let limit: Int?
 }
 
 struct PostsViewModel: PostsViewModelProtocol {
@@ -19,7 +25,24 @@ struct PostsViewModel: PostsViewModelProtocol {
         self.repostiory = repostiory
     }
     
-    func getPosts(callback: @escaping (Result<[PostProtocol]>) -> ()) {
-        self.repostiory.getPosts(callback: callback)
+    func getPosts(page: PostsPageResult?, callback: @escaping (Result<PostsPageResult>) -> ()) {
+        let handler = { (result: Result<[PostProtocol]>) in
+            let page = result.map({ (posts: [PostProtocol]) -> PostsPageResult in
+                return PostsPageResult(
+                    posts: posts,
+                    offest: posts.last?.id,
+                    limit: posts.count
+                )
+            })
+            
+            callback(page)
+        }
+        
+        if let offset = page?.offest, let limit = page?.limit {
+            self.repostiory.getPosts(offset: offset, limit: limit, callback: handler)
+        } else {
+            self.repostiory.getPosts(callback: handler)
+        }
+        
     }
 }

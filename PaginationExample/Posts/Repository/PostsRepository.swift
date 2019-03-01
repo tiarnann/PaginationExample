@@ -10,6 +10,7 @@ import Foundation
 
 protocol PostsRepositoryProtocol {
     func getPosts(callback: @escaping (Result<[PostProtocol]>) -> ())
+    func getPosts(offset: Int, limit: Int, callback: @escaping (Result<[PostProtocol]>) -> ())
 }
 
 struct PostsRepository: PostsRepositoryProtocol {
@@ -23,5 +24,9 @@ struct PostsRepository: PostsRepositoryProtocol {
         self.api.getPosts(
             callback: callback
         )
+    }
+    
+    func getPosts(offset: Int, limit: Int, callback: @escaping (Result<[PostProtocol]>) -> ()) {
+        self.api.getPosts(offset: offset, limit: limit, callback: callback)
     }
 }

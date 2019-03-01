@@ -28,7 +28,7 @@ struct NetworkManager: NetworkManagerProtocol {
     }
     
     func performRequest(request: URLRequest, callback: @escaping (Result<(Data, HTTPURLResponse)>)->()) {
-        URLSession().dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             let httpResponse = response as! HTTPURLResponse // this force unwrapping is safe
             
             if let error = error {

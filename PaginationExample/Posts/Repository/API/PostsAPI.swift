@@ -19,16 +19,14 @@ protocol PostsAPIProtocol {
 }
 
 struct PostsAPI: PostsAPIProtocol {
-    private let urlSession: URLSession
     private let networkManager: NetworkManagerProtocol
     
     init(networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager
-        self.urlSession = URLSession(configuration: URLSessionConfiguration.default)
     }
     
     func getPosts(callback: @escaping (Result<[PostProtocol]>)->()) {
-        let request = self.networkManager.buildRequest(url: "http://jsonplaceholder.typicode.com/posts")
+        let request = self.networkManager.buildRequest(url: "http://jsonplaceholder.typicode.com/posts?_limit=20")
         self.networkManager.performAndDecodeRequest(request: request) { (posts: Result<[Post]>) in
             callback(posts.map({ (posts) -> [PostProtocol] in
                 return posts

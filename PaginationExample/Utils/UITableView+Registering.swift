@@ -21,6 +21,7 @@ extension UITableView {
 
 extension UITableViewCell {
     static var identifier: String {
-        return String(describing: type(of: self))
+        let id = String(describing: self)
+        return id
     }
 }

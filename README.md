@@ -3,15 +3,13 @@ TODO:
 - [x] MVVM-C Structure
 - [x] Implement list with mock data
 - [x] Connect up api to fetch data
-- [ ] Make object to handle network requests
-- [ ] Detect table view scroll to trigger network
+- [x] Make object to handle network requests
+- [x] Detect table view scroll to trigger network
 - [ ] Make detail page for notes
 
 This is an iOS example project to pull data from JSONPlaceholder and maybe paginate it. It will* be demonstrating:
 - MVVM-Coordinator Pattern
-- Protocol Oriented Design
-- Repository Pattern
-- RxSwift
+- Some Protocol Oriented Design
 
 ## MVVM-Coordinator Pattern
 
@@ -32,15 +30,3 @@ protocol RootCoordinator {
 }
 ```
 
-## Protocol-Oriented Design
-Protocol-Oriented design is a practice to provide some attrative qualities for your program including:
-- Access-control
-- Testability
-- Separation of concerns
-- Flexbility
-
-## Repository Pattern
-Repository pattern is an abstraction used to combine multiple data providers through a simple interface.
-
-## Reactive Programming
-TODO

@@ -9,7 +9,8 @@
 import Foundation
 
 protocol PostsViewModelProtocol {
-    func getPosts(page: PostsPageResult?, callback: @escaping (Result<PostsPageResult>) -> ())
+    var posts: [PostProtocol] { get }
+    func nextPage(callback: @escaping (Error?)->())
 }
 
 struct PostsPageResult {
@@ -18,11 +19,15 @@ struct PostsPageResult {
     let limit: Int?
 }
 
-struct PostsViewModel: PostsViewModelProtocol {
+class PostsViewModel: PostsViewModelProtocol {
     private let repostiory: PostsRepositoryProtocol
+    private(set) var posts: [PostProtocol]
+    private var page: PostsPageResult?
+    private var fetching = false
     
     init(repostiory: PostsRepositoryProtocol) {
         self.repostiory = repostiory
+        self.posts = []
     }
     
     func getPosts(page: PostsPageResult?, callback: @escaping (Result<PostsPageResult>) -> ()) {
@@ -44,5 +49,25 @@ struct PostsViewModel: PostsViewModelProtocol {
             self.repostiory.getPosts(callback: handler)
         }
         
+    }
+    
+    func nextPage(callback: @escaping (Error?)->()) {
+        guard !fetching else {
+            return
+        }
+   
+        self.fetching = true
+        self.getPosts(page: self.page) { [weak self] result in
+            guard let `self` = self else { return }
+            result.map({ (page) -> Void in
+                self.page = page
+                self.posts.append(contentsOf: page.posts)
+                callback(nil)
+            }).catchError({ (error) in
+                callback(error)
+            })
+            
+            self.fetching = false
+        }
     }
 }

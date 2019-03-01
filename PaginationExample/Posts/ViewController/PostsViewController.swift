@@ -11,9 +11,6 @@ import UIKit
 
 class PostsViewController: UIViewController {
     private let viewModel: PostsViewModelProtocol
-    private var posts: [PostProtocol] = []
-    private var page: PostsPageResult?
-    private var fetching = false
     
     private let tableView: UITableView = {
         let view = UITableView(frame: .infinite, style: .plain)
@@ -37,31 +34,25 @@ class PostsViewController: UIViewController {
         self.tableView.register(UITableViewCell.self)
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.nextPage()
     }
     
     func setTitlePostsCount() {
-        self.title = "Posts (\(self.posts.count))"
+        self.title = "Posts (\(self.viewModel.posts.count))"
     }
     
-    func fetch() {
-        guard !self.fetching else {
-            return
-        }
-        
-        self.viewModel.getPosts(page: self.page) { [weak self] result in
+    func nextPage() {
+        self.viewModel.nextPage(callback: { [weak self] error in
             guard let `self` = self else { return }
-            result.map({ (page) -> Void in
-                self.page = page
-                self.posts.append(contentsOf: page.posts) // this is bad
-                DispatchQueue.main.async {
-                    self.fetching = false
-                    self.setTitlePostsCount()
-                    self.tableView.reloadData()
-                }
-            }).catchError({ (error) in
-                // show error in some way
-            })
-        }
+            if let _ = error {
+                // show error
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
     }
     
     override func loadView() {
@@ -80,21 +71,17 @@ class PostsViewController: UIViewController {
 }
 
 extension PostsViewController: UITableViewDataSource {
-    enum PostsTableViewSections: Int {
-        case posts
-        case loading
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == (viewModel.posts.count - 1) {
+            self.nextPage()
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard indexPath.section == PostsTableViewSections.posts.rawValue else {
-            self.fetch()
-            return tableView.dequeueResusableCell(for: indexPath) as UITableViewCell
-        }
-        
         let row = indexPath.row
         
-        assert(row < self.posts.count)
-        let model = self.posts[row]
+        assert(row < self.viewModel.posts.count)
+        let model = self.viewModel.posts[row]
         
         let cell: PostsTableViewCell  = tableView.dequeueResusableCell(for: indexPath)
         cell.titleLabel.text = model.title
@@ -104,23 +91,15 @@ extension PostsViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard section == PostsTableViewSections.posts.rawValue else {
-            return 1
-        }
-        
-        return self.posts.count
+        return self.viewModel.posts.count
     }
 }
 
 extension PostsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }

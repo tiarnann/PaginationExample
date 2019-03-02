@@ -5,7 +5,7 @@ TODO:
 - [x] Connect up api to fetch data
 - [x] Make object to handle network requests
 - [x] Detect table view scroll to trigger network
-- [ ] Make detail page for notes
+- [x] Make detail page for notes
 
 This is an iOS example project to pull data from JSONPlaceholder and maybe paginate it. It will feature:
 - MVVM-Coordinator Pattern

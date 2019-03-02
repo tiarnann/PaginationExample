@@ -47,7 +47,7 @@ Result.wrap("http://download.something")
 
 You also get to dodge passing errors along with your data. Typically we might add `Optional<Error>` to be given to a callback along with data just in case something messes up. It might look like this:
 ```
-func somethingAsync(callback: (Data, Error?)->) {/* */}
+func somethingAsync(callback: (Data?, Error?)->) {/* */}
 
 somethingAsync(callback: { data, error in
     if let error = error {
@@ -55,7 +55,11 @@ somethingAsync(callback: { data, error in
         return
     }
     
-    // mess with data now
+    if let data = data {
+        // mess with data now
+    }
+    
+    //why would this state even exist?
 })
 ```
 

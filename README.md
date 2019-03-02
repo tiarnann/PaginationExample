@@ -1,11 +1,4 @@
 # PaginationExample
-TODO:
-- [x] MVVM-C Structure
-- [x] Implement list with mock data
-- [x] Connect up api to fetch data
-- [x] Make object to handle network requests
-- [x] Detect table view scroll to trigger network
-- [x] Make detail page for notes
 
 This is an iOS example project to pull data from JSONPlaceholder and maybe paginate it. It will feature:
 - MVVM-Coordinator Pattern
@@ -50,4 +43,13 @@ Result.wrap("http://download.something")
     })
 ```
 
+# TODO
+- [x] MVVM-C Structure
+- [x] Implement list with mock data
+- [x] Connect up api to fetch data
+- [x] Make object to handle network requests
+- [x] Detect table view scroll to trigger network
+- [x] Make detail page for notes
+- [ ] Write a better readme.md
+- [ ] Write a long medium post about how to start iOS development, because there isn't enough of those posts...
 

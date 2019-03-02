@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PostsViewModelProtocol {
     var posts: [PostProtocol] { get }
     func nextPage(callback: @escaping (Error?)->())
+    func didSelectPost(viewController: UIViewController, post: PostProtocol)
 }
 
 struct PostsPageResult {
@@ -20,12 +22,14 @@ struct PostsPageResult {
 }
 
 class PostsViewModel: PostsViewModelProtocol {
+    private let coordinator: PostsCoordinatorProtocol
     private let repostiory: PostsRepositoryProtocol
     private(set) var posts: [PostProtocol]
     private var page: PostsPageResult?
     private var fetching = false
     
-    init(repostiory: PostsRepositoryProtocol) {
+    init(coordinator: PostsCoordinatorProtocol, repostiory: PostsRepositoryProtocol) {
+        self.coordinator = coordinator
         self.repostiory = repostiory
         self.posts = []
     }
@@ -69,5 +73,9 @@ class PostsViewModel: PostsViewModelProtocol {
             
             self.fetching = false
         }
+    }
+    
+    func didSelectPost(viewController: UIViewController, post: PostProtocol) {
+        self.coordinator.navigateTo(post: post, presentingViewController: viewController)
     }
 }

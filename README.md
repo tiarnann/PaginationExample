@@ -32,6 +32,7 @@ protocol RootCoordinator {
 }
 ```
 
+
 ## Result (monad part)
 
 The result type is like an `Either<A,B>` seen in other languages like Haskell. It's takes two generic parameters A and B which represent the possible type of the value it returns. My defintion of result is like this `Result ~ Either<A, Error>`.  It makes it easy to handle errors as they are can be propogated down long chains of logic. Like below...

@@ -50,6 +50,7 @@ class PostsViewController: UIViewController {
             }
             
             DispatchQueue.main.async {
+                self.setTitlePostsCount()
                 self.tableView.reloadData()
             }
         })
@@ -70,7 +71,19 @@ class PostsViewController: UIViewController {
     }
 }
 
-extension PostsViewController: UITableViewDataSource {
+extension PostsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedIndex = indexPath.row
+        
+        guard selectedIndex < self.viewModel.posts.count else {
+            // record error
+            return
+        }
+        
+        let post = self.viewModel.posts[selectedIndex]
+        self.viewModel.didSelectPost(viewController: self, post: post)
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == (viewModel.posts.count - 1) {
             self.nextPage()
@@ -97,9 +110,7 @@ extension PostsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.posts.count
     }
-}
-
-extension PostsViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }

@@ -24,6 +24,9 @@
 		09A6FEA8222367C4006C720D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FEA7222367C4006C720D /* NetworkManager.swift */; };
 		09A6FEAA22236815006C720D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FEA922236815006C720D /* Result.swift */; };
 		09A6FEAC22237B53006C720D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 09A6FEAB22237B53006C720D /* README.md */; };
+		09A6FEB2222A0022006C720D /* PostDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FEB1222A0022006C720D /* PostDetailCoordinator.swift */; };
+		09A6FEB4222A0039006C720D /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FEB3222A0039006C720D /* PostDetailViewController.swift */; };
+		09A6FEB6222A016E006C720D /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A6FEB5222A016E006C720D /* PostDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		09A6FEA7222367C4006C720D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		09A6FEA922236815006C720D /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		09A6FEAB22237B53006C720D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		09A6FEB1222A0022006C720D /* PostDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailCoordinator.swift; sourceTree = "<group>"; };
+		09A6FEB3222A0039006C720D /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		09A6FEB5222A016E006C720D /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +107,10 @@
 		09A6FE6722234504006C720D /* PaginationExample */ = {
 			isa = PBXGroup;
 			children = (
+				09A6FEAD2229FF95006C720D /* PostDetail */,
 				09A6FEA6222367B0006C720D /* Networking */,
 				09A6FEA322235C2C006C720D /* Utils */,
-				09A6FE8D2223469F006C720D /* Posts */,
+				09A6FE8D2223469F006C720D /* PostsList */,
 				09A6FE8A22234661006C720D /* Protocols */,
 				09A6FE6822234505006C720D /* AppDelegate.swift */,
 				09A6FE6F22234506006C720D /* Assets.xcassets */,
@@ -130,7 +137,7 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		09A6FE8D2223469F006C720D /* Posts */ = {
+		09A6FE8D2223469F006C720D /* PostsList */ = {
 			isa = PBXGroup;
 			children = (
 				09A6FE9422234793006C720D /* Model */,
@@ -139,7 +146,7 @@
 				09A6FE9722234889006C720D /* ViewController */,
 				09A6FE8E222346AF006C720D /* Coordinator */,
 			);
-			path = Posts;
+			path = PostsList;
 			sourceTree = "<group>";
 		};
 		09A6FE8E222346AF006C720D /* Coordinator */ = {
@@ -215,6 +222,40 @@
 				09A6FEA7222367C4006C720D /* NetworkManager.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		09A6FEAD2229FF95006C720D /* PostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FEB0222A0006006C720D /* ViewController */,
+				09A6FEAF2229FFFF006C720D /* ViewModel */,
+				09A6FEAE2229FFF7006C720D /* Coordinator */,
+			);
+			path = PostDetail;
+			sourceTree = "<group>";
+		};
+		09A6FEAE2229FFF7006C720D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FEB1222A0022006C720D /* PostDetailCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		09A6FEAF2229FFFF006C720D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FEB5222A016E006C720D /* PostDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		09A6FEB0222A0006006C720D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09A6FEB3222A0039006C720D /* PostDetailViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09A6FE9A222348CF006C720D /* PostsViewController.swift in Sources */,
+				09A6FEB4222A0039006C720D /* PostDetailViewController.swift in Sources */,
 				09A6FE9322234787006C720D /* PostsRepository.swift in Sources */,
 				09A6FE8C22234674006C720D /* RootCoordinatorProtocol.swift in Sources */,
 				09A6FE9C2223498F006C720D /* PostsViewModel.swift in Sources */,
@@ -330,7 +372,9 @@
 				09A6FEA222235C10006C720D /* PostsTableViewCell.swift in Sources */,
 				09A6FEA522235C47006C720D /* UITableView+Registering.swift in Sources */,
 				09A6FE90222346BD006C720D /* PostsCoordinator.swift in Sources */,
+				09A6FEB2222A0022006C720D /* PostDetailCoordinator.swift in Sources */,
 				09A6FE6922234505006C720D /* AppDelegate.swift in Sources */,
+				09A6FEB6222A016E006C720D /* PostDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
